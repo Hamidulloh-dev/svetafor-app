@@ -5,15 +5,16 @@ import './index.css'
 
 export function App() {
 
-  const [light, setLight] = useState<'red' | 'yellow' | 'green'>('red')
+  const [light, setLight] = useState<'red' | 'redYellow' | 'green' | 'greenYellow'>('red')
   const intervalRef = useRef<number | null>(null)
     
     const start = () => {
         if (intervalRef.current) return 
             intervalRef.current = setInterval(() => {
               setLight((e) => {
-                  if (e === 'red') return 'green'
-                  if (e === 'green') return 'yellow'
+                  if (e === 'red') return 'redYellow'
+                  if (e === 'redYellow') return 'green'
+                  if (e === 'green') return 'greenYellow'
                   return 'red'
               })
             }, 1000)
@@ -41,7 +42,7 @@ export function App() {
                      ${light === 'red' ? 'bg-red-600' : 'bg-red-600/30'}`}>00</div>
           
                 <div className={` w-36 h-36 rounded-full 
-                    ${light === 'yellow' ? 'bg-yellow-500' : 'bg-yellow-500/30'}`}></div>
+                    ${light === 'redYellow' || light === 'greenYellow' ? 'bg-yellow-500' : 'bg-yellow-500/30'}`}></div>
           
                 <div className={`flex items-center justify-center text-8xl  w-36 h-36 rounded-full 
                     ${light === 'green' ? 'bg-green-600' : 'bg-green-600/30'}`}>00</div>
